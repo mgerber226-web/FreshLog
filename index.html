@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FreshLog - Kitchen Expiry & Specials MVP</title>
+  <title>The King and Queen - Kitchen Expiry & Specials</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
@@ -20,9 +20,9 @@
     <header class="bg-slate-900 text-white p-4 sticky top-0 z-30 shadow-md">
       <div class="flex justify-between items-center mb-3">
         <div class="flex items-center gap-2">
-          <div class="bg-emerald-500 text-slate-900 font-black px-2 py-1 rounded text-sm">FL</div>
+          <div class="bg-emerald-500 text-slate-900 font-black px-2 py-1 rounded text-sm">KQ</div>
           <div>
-            <h1 class="font-bold text-lg leading-tight">FreshLog <span class="text-xs font-normal bg-slate-800 text-emerald-400 px-1.5 py-0.5 rounded">Pro Kitchen</span></h1>
+            <h1 class="font-bold text-base leading-tight">The King and Queen</h1>
             <p class="text-xs text-slate-400">Kitchen Use-By & Waste Management</p>
           </div>
         </div>
@@ -30,9 +30,9 @@
           <div class="text-right">
             <span class="text-xs text-slate-400 block">Active Staff</span>
             <select id="staff-select" class="bg-slate-800 text-xs text-emerald-300 font-medium px-2 py-1 rounded border border-slate-700 outline-none">
-              <option>Chef Sam (Head)</option>
-              <option>Chef Marco</option>
-              <option>Sarah (Kitchen)</option>
+              <option>Jamie</option>
+              <option>David</option>
+              <option>Toby</option>
             </select>
           </div>
         </div>
@@ -75,7 +75,7 @@
               <i data-lucide="mic" class="w-3.5 h-3.5"></i> Demo Voice Note
             </button>
           </div>
-          <p id="voice-simulation-status" class="text-xs text-slate-600 italic">"4 packs of chicken breasts, Fridge 1, expires tomorrow..."</p>
+          <p id="voice-simulation-status" class="text-xs text-slate-600 italic">"Tap below or use voice to log your first stock item..."</p>
         </div>
 
         <!-- Filter bar -->
@@ -124,11 +124,11 @@
           <div class="grid grid-cols-2 gap-3 mb-4">
             <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl">
               <span class="text-xs text-emerald-700 font-medium block">Stock Rescued</span>
-              <span id="stat-rescued-count" class="text-xl font-black text-emerald-900">14 items</span>
+              <span id="stat-rescued-count" class="text-xl font-black text-emerald-900">0 items</span>
             </div>
             <div class="bg-blue-50 border border-blue-200 p-3 rounded-xl">
               <span class="text-xs text-blue-700 font-medium block">Est. Money Saved</span>
-              <span id="stat-money-saved" class="text-xl font-black text-blue-900">£380</span>
+              <span id="stat-money-saved" class="text-xl font-black text-blue-900">£0</span>
             </div>
           </div>
           <div id="eho-log-list" class="space-y-2 text-xs"></div>
@@ -140,7 +140,7 @@
     <div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur border-t border-slate-200 p-3 shadow-lg z-20">
       <form onsubmit="handleTextSubmit(event)" class="flex gap-2">
         <div class="relative flex-1">
-          <input type="text" id="manual-input" placeholder="e.g., 3 packs of sliced ham, Walk-in, Fri" class="w-full bg-slate-100 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 font-medium">
+          <input type="text" id="manual-input" placeholder="e.g., 3 packs steak, Fridge 1, Friday" class="w-full bg-slate-100 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 font-medium">
           <i data-lucide="mic" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
         </div>
         <button type="submit" class="bg-slate-900 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition shadow-sm flex items-center gap-1">
@@ -168,12 +168,12 @@
         <div class="flex justify-center py-2">
           <div id="print-modal-content" class="bg-white border-2 border-dashed border-slate-800 p-3 rounded-lg text-slate-900 w-64 shadow-inner space-y-2 font-mono">
             <div class="flex justify-between items-start border-b border-slate-800 pb-1 text-[10px]">
-              <span class="font-bold">FRESHLOG KITCHEN</span>
+              <span class="font-bold">THE KING AND QUEEN</span>
               <span id="label-zone" class="font-bold bg-slate-900 text-white px-1 rounded">FRIDGE 1</span>
             </div>
             <div>
-              <div id="label-item-name" class="font-black text-sm uppercase leading-tight">CHICKEN BREASTS</div>
-              <div id="label-qty" class="text-xs font-bold text-slate-700">QTY: 4 PACKS</div>
+              <div id="label-item-name" class="font-black text-sm uppercase leading-tight">ITEM NAME</div>
+              <div id="label-qty" class="text-xs font-bold text-slate-700">QTY: 1 UNIT</div>
             </div>
             <div class="bg-slate-900 text-white p-1.5 text-center rounded">
               <span class="text-[9px] uppercase tracking-widest block text-slate-400">USE BY DATE</span>
@@ -181,8 +181,8 @@
             </div>
             <div class="flex justify-between items-end pt-1 text-[9px] text-slate-600 border-t border-dashed border-slate-300">
               <div>
-                <span id="label-prepped">Prepped: 13 Nov, 09:15</span><br>
-                <span>Staff: Sam</span>
+                <span id="label-prepped">Prepped: Today</span><br>
+                <span id="label-staff-tag">Staff: Jamie</span>
               </div>
               <div class="bg-slate-200 p-1 rounded font-bold text-[8px] text-center">
                 [QR] SCAN TO<br>MARK USED
@@ -210,24 +210,16 @@
     let labelSize = '50x30';
     let activeLabelData = null;
 
-    let inventory = [
-      { id: 1, name: 'Fresh Chicken Breasts', qty: '4 packs', zone: 'Fridge 1', expiry: '2026-11-14', status: 'active', staff: 'Chef Sam' },
-      { id: 2, name: 'Sliced Smoked Salmon', qty: '12 portions', zone: 'Prep Fridge', expiry: '2026-11-13', status: 'active', staff: 'Chef Marco' },
-      { id: 3, name: 'Heavy Double Cream', qty: '3 litres', zone: 'Walk-in', expiry: '2026-11-16', status: 'active', staff: 'Sarah' },
-      { id: 4, name: 'Sourdough Loaves', qty: '6 units', zone: 'Dry Store', expiry: '2026-11-18', status: 'active', staff: 'Chef Sam' },
-      { id: 5, name: 'Baby Spinach Bags', qty: '5 bags', zone: 'Fridge 1', expiry: '2026-11-13', status: 'active', staff: 'Sarah' }
-    ];
+    // Fridge starts completely empty for your live pilot
+    let inventory = [];
 
-    let ehoLog = [
-      { id: 101, text: 'Chicken thighs marked as USED in prep', time: 'Yesterday, 14:20', type: 'used', saved: '£24' },
-      { id: 102, text: 'Tomato sauce batch binned (expired)', time: '11 Nov, 08:30', type: 'binned', saved: '£12' }
-    ];
+    let ehoLog = [];
 
     const demoVoiceNotes = [
-      { name: 'Sliced Roast Beef', qty: '2 trays', zone: 'Prep Fridge', expiryDays: 1 },
-      { name: 'Fresh Buffalo Mozzarella', qty: '8 balls', zone: 'Fridge 1', expiryDays: 2 },
-      { name: 'Homemade Caesar Dressing', qty: '1.5 L', zone: 'Walk-in', expiryDays: 3 },
-      { name: 'Organic Almond Milk', qty: '4 cartons', zone: 'Dry Store', expiryDays: 5 }
+      { name: 'Rump Steak Portions', qty: '6 cuts', zone: 'Fridge 1', expiryDays: 2 },
+      { name: 'Fresh Sea Bass Fillets', qty: '10 portions', zone: 'Prep Fridge', expiryDays: 1 },
+      { name: 'Caesar Salad Dressing', qty: '2 L', zone: 'Walk-in', expiryDays: 3 },
+      { name: 'Garlic & Herb Butter', qty: '4 blocks', zone: 'Dry Store', expiryDays: 7 }
     ];
 
     function init() {
@@ -286,7 +278,13 @@
       const filtered = inventory.filter(item => currentZoneFilter === 'All' || item.zone === currentZoneFilter);
 
       if (filtered.length === 0) {
-        listEl.innerHTML = `<div class="text-center py-8 text-slate-400 text-xs">No active stock items found in ${currentZoneFilter}.</div>`;
+        listEl.innerHTML = `
+          <div class="text-center py-12 border-2 border-dashed border-slate-200 rounded-2xl p-6 space-y-2">
+            <i data-lucide="package-open" class="w-8 h-8 text-slate-300 mx-auto"></i>
+            <h4 class="font-bold text-slate-700 text-sm">Fridge is empty</h4>
+            <p class="text-xs text-slate-400">Use the voice button above or type below to log your first prep item.</p>
+          </div>`;
+        lucide.createIcons();
         return;
       }
 
@@ -357,7 +355,7 @@
         name: val,
         qty: '1 unit',
         zone: 'Fridge 1',
-        expiry: '2026-11-15',
+        expiry: '2026-11-16',
         status: 'active',
         staff: document.getElementById('staff-select').value
       };
@@ -381,7 +379,7 @@
           text: `${item.name} (${item.qty}) marked as ${action.toUpperCase()}`,
           time: 'Just now',
           type: action,
-          saved: action === 'used' ? '£18' : '£0'
+          saved: action === 'used' ? '£15' : '£0'
         });
         renderInventory();
         renderEhoLog();
@@ -390,6 +388,10 @@
 
     function renderEhoLog() {
       const listEl = document.getElementById('eho-log-list');
+      if (ehoLog.length === 0) {
+        listEl.innerHTML = `<p class="text-slate-400 text-center py-4">No compliance actions logged yet.</p>`;
+        return;
+      }
       listEl.innerHTML = ehoLog.map(log => `
         <div class="flex justify-between items-center p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
           <div>
@@ -412,6 +414,7 @@
       document.getElementById('label-qty').textContent = `QTY: ${item.qty.toUpperCase()}`;
       document.getElementById('label-zone').textContent = item.zone.toUpperCase();
       document.getElementById('label-expiry').textContent = item.expiry;
+      document.getElementById('label-staff-tag').textContent = `Staff: ${item.staff || document.getElementById('staff-select').value}`;
       document.getElementById('print-modal').classList.remove('hidden');
       lucide.createIcons();
     }
@@ -437,54 +440,26 @@
         <div class="bg-white border border-amber-200 rounded-2xl p-4 shadow-sm space-y-3">
           <div class="flex justify-between items-start">
             <div>
-              <span class="text-[10px] font-bold bg-amber-500 text-slate-900 px-2 py-0.5 rounded">CHEF'S SPECIAL #1</span>
-              <h4 class="font-bold text-slate-900 text-base mt-1">Pan-Seared Salmon & Spinach Risotto</h4>
+              <span class="text-[10px] font-bold bg-amber-500 text-slate-900 px-2 py-0.5 rounded">CHEF'S SPECIAL</span>
+              <h4 class="font-bold text-slate-900 text-base mt-1">Pub Classic Pie & Gravy</h4>
             </div>
-            <span class="text-sm font-black text-emerald-600">£16.50 / portion</span>
+            <span class="text-sm font-black text-emerald-600">£15.50 / portion</span>
           </div>
           <div class="space-y-1.5 text-xs">
             <div class="flex items-center gap-1.5 text-rose-700 bg-rose-50 px-2 py-1 rounded">
               <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
-              <span>Rescuing expiring stock: <strong>Sliced Smoked Salmon & Baby Spinach</strong></span>
+              <span>Rescuing expiring stock from fridges</span>
             </div>
             <div class="text-slate-600">
-              <span>Pantry pairing: Arborio rice, parmesan, white wine, vegetable stock</span>
+              <span>Pantry pairing: Shortcrust pastry, rich beef stock, seasonal root veg</span>
             </div>
           </div>
           <div class="flex justify-between items-center pt-2 border-t border-slate-100 text-xs">
             <div>
-              <span class="font-bold text-slate-900">Est. Profit: £195</span> <span class="text-slate-400">| 14 portions</span><br>
-              <span class="text-[10px] text-amber-700">Allergens: Fish, Milk (Natasha's Law Compliant)</span>
+              <span class="font-bold text-slate-900">Est. Profit: £180</span> <span class="text-slate-400">| 15 portions</span><br>
+              <span class="text-[10px] text-amber-700">Allergens: Gluten, Celery (Natasha's Law Compliant)</span>
             </div>
-            <button onclick="runSpecialAction('Salmon Risotto')" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-2 rounded-xl font-bold shadow-sm">
-              Run as Special
-            </button>
-          </div>
-        </div>
-
-        <div class="bg-white border border-amber-200 rounded-2xl p-4 shadow-sm space-y-3">
-          <div class="flex justify-between items-start">
-            <div>
-              <span class="text-[10px] font-bold bg-amber-500 text-slate-900 px-2 py-0.5 rounded">CHEF'S SPECIAL #2</span>
-              <h4 class="font-bold text-slate-900 text-base mt-1">Creamy Tuscan Chicken & Herb Pasta</h4>
-            </div>
-            <span class="text-sm font-black text-emerald-600">£14.50 / portion</span>
-          </div>
-          <div class="space-y-1.5 text-xs">
-            <div class="flex items-center gap-1.5 text-rose-700 bg-rose-50 px-2 py-1 rounded">
-              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
-              <span>Rescuing expiring stock: <strong>Fresh Chicken Breasts & Heavy Double Cream</strong></span>
-            </div>
-            <div class="text-slate-600">
-              <span>Pantry pairing: Penne pasta, garlic, sundried tomatoes, basil</span>
-            </div>
-          </div>
-          <div class="flex justify-between items-center pt-2 border-t border-slate-100 text-xs">
-            <div>
-              <span class="font-bold text-slate-900">Est. Profit: £210</span> <span class="text-slate-400">| 18 portions</span><br>
-              <span class="text-[10px] text-amber-700">Allergens: Gluten, Milk (Natasha's Law Compliant)</span>
-            </div>
-            <button onclick="runSpecialAction('Tuscan Chicken')" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-2 rounded-xl font-bold shadow-sm">
+            <button onclick="runSpecialAction('Pub Classic Pie')" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-2 rounded-xl font-bold shadow-sm">
               Run as Special
             </button>
           </div>
@@ -494,7 +469,7 @@
     }
 
     function runSpecialAction(specialName) {
-      alert(`"${specialName}" is now active on the kitchen specials board!\nExpiring ingredients have been reserved and tagged on the live board.`);
+      alert(`"${specialName}" is now active on The King and Queen specials board!`);
     }
 
     function exportCSV() {

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Log Fresh - Kitchen Compliance & Expiry</title>
+<title>The King and Queen - Kitchen Compliance & Expiry</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
@@ -20,9 +20,9 @@ body * { visibility: hidden; }
 <header class="bg-slate-900 text-white p-4 sticky top-0 z-30 shadow-md">
 <div class="flex justify-between items-center mb-3">
 <div class="flex items-center gap-2">
-<div class="bg-emerald-500 text-slate-900 font-black px-2 py-1 rounded text-sm">LF</div>
+<div class="bg-emerald-500 text-slate-900 font-black px-2 py-1 rounded text-sm">KQ</div>
 <div>
-<h1 class="font-bold text-base leading-tight">Log Fresh</h1>
+<h1 class="font-bold text-base leading-tight">The King and Queen</h1>
 <p class="text-xs text-slate-400">EHO Compliance, Temps & Expiry</p>
 </div>
 </div>
@@ -53,5 +53,44 @@ body * { visibility: hidden; }
 <i data-lucide="layers" class="w-3.5 h-3.5"></i> Board
 </button>
 <button onclick="switchTab('temps')" id="tab-btn-temps" class="py-2 text-[11px] font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
-<i data-lucide="thermometer" class
+<i data-lucide="thermometer" class="w-3.5 h-3.5 text-sky-400"></i> Temps
+</button>
+<button onclick="switchTab('checklists')" id="tab-btn-checklists" class="py-2 text-[11px] font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
+<i data-lucide="check-square" class="w-3.5 h-3.5 text-emerald-400"></i> Checks
+</button>
+<button onclick="switchTab('specials')" id="tab-btn-specials" class="py-2 text-[11px] font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
+<i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Specials
+</button>
+</div>
+</header>
+
+<!-- Main Content Area -->
+<main class="flex-1 p-4 space-y-4">
+
+<!-- TAB 1: LIVE EXPIRY BOARD -->
+<div id="tab-board" class="space-y-4">
+<div class="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-blue-500/10 border border-emerald-500/30 rounded-2xl p-3.5">
+<div class="flex justify-between items-center mb-1.5">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-600 text-white px-2 py-0.5 rounded-full">Quick Intake</span>
+<h3 class="font-bold text-slate-900 mt-1 text-sm">Log Prepped Stock</h3>
+</div>
+<button onclick="runDemoVoice()" class="bg-slate-900 text-emerald-400 text-xs font-semibold px-3 py-1.5 rounded-xl hover:bg-slate-800 transition flex items-center gap-1 shadow-sm">
+<i data-lucide="mic" class="w-3.5 h-3.5"></i> Demo Voice
+</button>
+</div>
+<p id="voice-simulation-status" class="text-xs text-slate-600 italic">"Set your use-by date in the bar below, then log stock."</p>
+</div>
+
+<!-- Filter bar -->
+<div class="flex gap-2 overflow-x-auto pb-1 text-xs">
+<button onclick="filterZone('All')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-900 text-white font-medium whitespace-nowrap">All Zones</button>
+<button onclick="filterZone('Fridge 1')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Fridge 1</button>
+<button onclick="filterZone('Prep Fridge')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Prep Fridge</button>
+<button onclick="filterZone('Walk-in')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Walk-in</button>
+<button onclick="filterZone('Dry Store')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Dry Store</button>
+</div>
+
+<!-- Inventory List -->
+<div id="inventory-list"
 

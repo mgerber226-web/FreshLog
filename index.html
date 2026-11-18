@@ -114,5 +114,759 @@ gap: 8px;
 cursor: pointer;
 }
 
+.switch-btn {
+background: var(--danger);
+color: white;
+padding: 2px 8px;
+border-radius: 4px;
+font-weight: bold;
+font-size: 11px;
+transition: background 0.2s;
+}
 
+.switch-btn.active {
+background: var(--primary);
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+display: flex;
+gap: 6px;
+padding: 10px 16px;
+background: var(--bg-dark);
+overflow-x: auto;
+}
+
+.tab-btn {
+background: var(--card-bg);
+border: 1px solid var(--card-border);
+color: var(--text-muted);
+padding: 8px 16px;
+border-radius: 8px;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+white-space: nowrap;
+transition: all 0.2s;
+}
+
+.tab-btn.active {
+background: var(--primary);
+color: white;
+border-color: var(--primary);
+}
+
+/* Main Container Views */
+.view-container {
+padding: 0 16px;
+display: none;
+}
+
+.view-container.active {
+display: block;
+}
+
+/* Zone Filter Bar */
+.zone-filters {
+display: flex;
+gap: 6px;
+overflow-x: auto;
+padding: 4px 0 12px 0;
+}
+
+.zone-chip {
+background: var(--card-bg);
+border: 1px solid var(--card-border);
+color: var(--text-muted);
+padding: 6px 12px;
+border-radius: 20px;
+font-size: 12px;
+cursor: pointer;
+white-space: nowrap;
+}
+
+.zone-chip.active {
+background: var(--text-main);
+color: var(--bg-dark);
+font-weight: 600;
+border-color: var(--text-main);
+}
+
+/* Stock Cards */
+.stock-grid {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.stock-card {
+background: var(--card-bg);
+border: 1px solid var(--card-border);
+border-radius: 10px;
+padding: 12px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: relative;
+overflow: hidden;
+}
+
+.stock-card::before {
+content: '';
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+width: 4px;
+}
+
+.stock-card.status-safe::before { background: var(--safe); }
+.stock-card.status-warning::before { background: var(--warning); }
+.stock-card.status-danger::before { background: var(--danger); }
+
+.stock-info h3 {
+font-size: 15px;
+font-weight: 700;
+margin-bottom: 2px;
+}
+
+.stock-meta {
+font-size: 11px;
+color: var(--text-muted);
+display: flex;
+gap: 8px;
+}
+
+.expiry-badge {
+font-size: 10px;
+font-weight: 700;
+padding: 2px 6px;
+border-radius: 4px;
+text-transform: uppercase;
+}
+
+.badge-safe { background: rgba(16, 185, 129, 0.2); color: var(--safe); }
+.badge-warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+.badge-danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+
+.stock-actions {
+display: flex;
+gap: 6px;
+}
+
+.action-btn {
+background: rgba(255,255,255,0.05);
+border: 1px solid var(--card-border);
+color: var(--text-main);
+padding: 6px 10px;
+border-radius: 6px;
+font-size: 11px;
+font-weight: 600;
+cursor: pointer;
+}
+
+.action-btn.specials {
+background: rgba(16, 185, 129, 0.15);
+color: var(--primary);
+border-color: rgba(16, 185, 129, 0.3);
+}
+
+.action-btn.discard {
+background: rgba(239, 68, 68, 0.15);
+color: var(--danger);
+border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Fixed Bottom Quick-Intake Bar */
+.intake-dock {
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+background: #0f172a;
+border-top: 1px solid var(--card-border);
+padding: 12px 16px env(safe-area-inset-bottom, 12px) 16px;
+box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+z-index: 1000;
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+.intake-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.intake-title {
+font-size: 12px;
+font-weight: 700;
+color: var(--primary);
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.voice-demo-btn {
+background: rgba(16, 185, 129, 0.15);
+color: var(--primary);
+border: 1px solid var(--primary);
+padding: 2px 8px;
+border-radius: 4px;
+font-size: 10px;
+font-weight: 700;
+cursor: pointer;
+}
+
+/* Presets Row */
+.presets-row {
+display: flex;
+gap: 6px;
+overflow-x: auto;
+}
+
+.preset-chip {
+background: var(--card-bg);
+border: 1px solid var(--card-border);
+color: var(--text-main);
+padding: 4px 10px;
+border-radius: 6px;
+font-size: 11px;
+font-weight: 600;
+cursor: pointer;
+white-space: nowrap;
+}
+
+.preset-chip.active {
+background: var(--primary);
+border-color: var(--primary);
+}
+
+/* Inputs Row */
+.intake-form-grid {
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: 6px;
+}
+
+@media (max-width: 480px) {
+.intake-form-grid {
+grid-template-columns: 1fr 1fr;
+}
+}
+
+.input-group {
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.input-group label {
+font-size: 10px;
+color: var(--text-muted);
+font-weight: 600;
+}
+
+.form-control {
+background: var(--card-bg);
+border: 1px solid var(--card-border);
+color: var(--text-main);
+padding: 8px;
+border-radius: 6px;
+font-size: 13px;
+outline: none;
+width: 100%;
+}
+
+.log-submit-btn {
+background: var(--primary);
+color: white;
+border: none;
+border-radius: 6px;
+font-weight: 700;
+font-size: 13px;
+padding: 8px 16px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+grid-column: span full;
+}
+
+.log-submit-btn:hover {
+background: var(--primary-hover);
+}
+
+/* Empty State */
+.empty-state {
+text-align: center;
+padding: 40px 20px;
+color: var(--text-muted);
+}
+
+.empty-state p {
+font-size: 13px;
+margin-top: 4px;
+}
+
+/* Thermal Label Modal Preview */
+.modal-overlay {
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+background: rgba(0,0,0,0.8);
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 2000;
+padding: 16px;
+}
+
+.thermal-label-card {
+background: #fff;
+color: #000;
+width: 100%;
+max-width: 320px;
+padding: 16px;
+border-radius: 4px;
+font-family: monospace;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+position: relative;
+}
+
+.thermal-header {
+text-align: center;
+border-bottom: 2px dashed #000;
+padding-bottom: 8px;
+margin-bottom: 8px;
+}
+
+.thermal-body {
+font-size: 13px;
+line-height: 1.4;
+margin-bottom: 12px;
+}
+
+.thermal-footer {
+display: flex;
+gap: 8px;
+}
+
+.thermal-btn {
+flex: 1;
+padding: 8px;
+border: none;
+border-radius: 4px;
+font-weight: bold;
+cursor: pointer;
+font-size: 12px;
+}
+
+.print-btn { background: #000; color: #fff; }
+.close-modal-btn { background: #e2e8f0; color: #000; }
+</style>
+</head>
+<body>
+
+<header>
+<div class="header-top">
+<div class="brand-area">
+<div class="logo-box">KQ</div>
+<div class="app-title">
+<h1>The King and Queen</h1>
+<p>EHO Compliance, Temps & Expiry</p>
+</div>
+</div>
+<div class="chef-selector">
+<span>Chef:</span>
+<select id="activeChefSelect" onchange="updateActiveChef()">
+<option value="Jamie">Jamie</option>
+<option value="David">David</option>
+<option value="Toby">Toby</option>
+<option value="Michau">Michau</option>
+</select>
+</div>
+</div>
+<div class="settings-bar">
+<span>🖨️ Auto-Print Thermal Labels</span>
+<div class="toggle-switch">
+<div id="thermalToggleBtn" class="switch-btn active" onclick="toggleThermal()">ON</div>
+</div>
+</div>
+</header>
+
+<div class="nav-tabs">
+<button class="tab-btn active" onclick="switchTab('board')">Board</button>
+<button class="tab-btn" onclick="switchTab('temps')">Temps</button>
+<button class="tab-btn" onclick="switchTab('checks')">Checks</button>
+<button class="tab-btn" onclick="switchTab('specials')">Specials</button>
+</div>
+
+<!-- BOARD VIEW -->
+<div id="view-board" class="view-container active">
+<div class="zone-filters" id="zoneFilters">
+<div class="zone-chip active" onclick="filterZone('All')">All Zones</div>
+<div class="zone-chip" onclick="filterZone('Fridge 1')">Fridge 1</div>
+<div class="zone-chip" onclick="filterZone('Prep Fridge')">Prep Fridge</div>
+<div class="zone-chip" onclick="filterZone('Walk-in')">Walk-in</div>
+<div class="zone-chip" onclick="filterZone('Dry Store')">Dry Store</div>
+</div>
+<div class="stock-grid" id="stockGrid">
+<!-- Rendered dynamically -->
+</div>
+</div>
+
+<!-- TEMPS VIEW -->
+<div id="view-temps" class="view-container">
+<div class="stock-grid">
+<div class="stock-card status-safe">
+<div class="stock-info">
+<h3>Walk-in Fridge (0°C to +5°C)</h3>
+<div class="stock-meta"><span>Recorded: +3.2°C by Jamie</span><span>Just now</span></div>
+</div>
+<button class="action-btn" onclick="logTemp('Walk-in Fridge', 3.2)">Log Temp</button>
+</div>
+<div class="stock-card status-safe">
+<div class="stock-info">
+<h3>Prep Fridge (+1°C to +4°C)</h3>
+<div class="stock-meta"><span>Recorded: +2.8°C by Jamie</span><span>2 hrs ago</span></div>
+</div>
+<button class="action-btn" onclick="logTemp('Prep Fridge', 2.8)">Log Temp</button>
+</div>
+<div class="stock-card status-safe">
+<div class="stock-info">
+<h3>Line Freezer (-18°C or below)</h3>
+<div class="stock-meta"><span>Recorded: -20.5°C by Jamie</span><span>3 hrs ago</span></div>
+</div>
+<button class="action-btn" onclick="logTemp('Line Freezer', -20.5)">Log Temp</button>
+</div>
+</div>
+</div>
+
+<!-- CHECKS VIEW -->
+<div id="view-checks" class="view-container">
+<div class="stock-grid">
+<div class="stock-card status-safe">
+<div class="stock-info">
+<h3>SFBB Opening Checks</h3>
+<div class="stock-meta"><span>Completed today by Jamie</span></div>
+</div>
+<button class="action-btn specials" onclick="alert('Opening checks already verified.')">Verified</button>
+</div>
+<div class="stock-card status-safe">
+<div class="stock-info">
+<h3>SFBB Closing Checks</h3>
+<div class="stock-meta"><span>Pending end of shift</span></div>
+</div>
+<button class="action-btn" onclick="alert('Closing checks signed off.')">Sign Off</button>
+</div>
+</div>
+</div>
+
+<!-- SPECIALS VIEW -->
+<div id="view-specials" class="view-container">
+<div class="stock-grid" id="specialsGrid">
+<!-- Rendered dynamically -->
+</div>
+</div>
+
+<!-- FIXED BOTTOM QUICK INTAKE DOCK -->
+<div class="intake-dock">
+<div class="intake-header">
+<span class="intake-title">Quick Intake & Expiry</span>
+<button class="voice-demo-btn" onclick="triggerVoiceDemo()">🎤 Demo Voice</button>
+</div>
+
+<div class="presets-row" id="presetRow">
+<div class="preset-chip" onclick="applyPreset(1, '+24h')">+24h</div>
+<div class="preset-chip" onclick="applyPreset(2, '+2d')">+2d</div>
+<div class="preset-chip active" onclick="applyPreset(3, '+3d (EHO)')">+3d (EHO)</div>
+<div class="preset-chip" onclick="applyPreset(5, '+5d')">+5d</div>
+<div class="preset-chip" onclick="applyPreset(7, '+7d')">+7d</div>
+</div>
+
+<div class="intake-form-grid">
+<div class="input-group">
+<label>Item Name</label>
+<input type="text" id="inputItemName" class="form-control" placeholder="e.g. Slow Braised Beef">
+</div>
+<div class="input-group">
+<label>Zone</label>
+<select id="inputZone" class="form-control">
+<option value="Fridge 1">Fridge 1</option>
+<option value="Prep Fridge">Prep Fridge</option>
+<option value="Walk-in">Walk-in</option>
+<option value="Dry Store">Dry Store</option>
+</select>
+</div>
+<div class="input-group">
+<label>Use-By Date</label>
+<input type="date" id="inputExpiryDate" class="form-control">
+</div>
+<div class="input-group">
+<label>Qty / Batches</label>
+<input type="text" id="inputQty" class="form-control" value="1 Container">
+</div>
+</div>
+
+<button class="log-submit-btn" onclick="submitStock()">+ Log Prepped Stock</button>
+</div>
+
+<!-- THERMAL LABEL PREVIEW MODAL -->
+<div class="modal-overlay" id="labelModal">
+<div class="thermal-label-card">
+<div class="thermal-header">
+<strong>THE KING & QUEEN</strong><br>
+<small>KITCHEN PREP & EXPIRY LABEL</small>
+</div>
+<div class="thermal-body" id="modalLabelContent">
+<!-- Dynamic Content -->
+</div>
+<div class="thermal-footer">
+<button class="thermal-btn print-btn" onclick="simPrint()">🖨️ Print Label</button>
+<button class="thermal-btn close-modal-btn" onclick="closeModal()">Close</button>
+</div>
+</div>
+</div>
+
+<script>
+// Initial clean slate or loaded from localStorage
+let stockItems = JSON.parse(localStorage.getItem('freshlog_stock')) || [];
+let specialsItems = JSON.parse(localStorage.getItem('freshlog_specials')) || [];
+let autoPrint = true;
+let activeFilter = 'All';
+let activeChef = localStorage.getItem('freshlog_chef') || 'Jamie';
+
+document.getElementById('activeChefSelect').value = activeChef;
+
+// Set default date to +3 days ahead
+function initDefaultDate() {
+const d = new Date();
+d.setDate(d.getDate() + 3);
+document.getElementById('inputExpiryDate').valueAsDate = d;
+}
+initDefaultDate();
+
+function switchTab(tab) {
+document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
+
+if(tab === 'board') {
+document.querySelectorAll('.tab-btn')[0].classList.add('active');
+document.getElementById('view-board').classList.add('active');
+renderStock();
+} else if(tab === 'temps') {
+document.querySelectorAll('.tab-btn')[1].classList.add('active');
+document.getElementById('view-temps').classList.add('active');
+} else if(tab === 'checks') {
+document.querySelectorAll('.tab-btn')[2].classList.add('active');
+document.getElementById('view-checks').classList.add('active');
+} else if(tab === 'specials') {
+document.querySelectorAll('.tab-btn')[3].classList.add('active');
+document.getElementById('view-specials').classList.add('active');
+renderSpecials();
+}
+}
+
+function toggleThermal() {
+autoPrint = !autoPrint;
+const btn = document.getElementById('thermalToggleBtn');
+btn.textContent = autoPrint ? 'ON' : 'OFF';
+btn.classList.toggle('active', autoPrint);
+}
+
+function updateActiveChef() {
+activeChef = document.getElementById('activeChefSelect').value;
+localStorage.setItem('freshlog_chef', activeChef);
+}
+
+function applyPreset(days, labelText) {
+document.querySelectorAll('.preset-chip').forEach(c => c.classList.remove('active'));
+event.target.classList.add('active');
+
+const d = new Date();
+d.setDate(d.getDate() + days);
+document.getElementById('inputExpiryDate').valueAsDate = d;
+}
+
+function filterZone(zone) {
+activeFilter = zone;
+document.querySelectorAll('.zone-chip').forEach(c => c.classList.remove('active'));
+event.target.classList.add('active');
+renderStock();
+}
+
+function submitStock() {
+const name = document.getElementById('inputItemName').value.trim();
+const zone = document.getElementById('inputZone').value;
+const expiryDate = document.getElementById('inputExpiryDate').value;
+const qty = document.getElementById('inputQty').value.trim();
+
+if(!name || !expiryDate) {
+alert('Please enter an item name and use-by date.');
+return;
+}
+
+const newItem = {
+id: Date.now(),
+name,
+zone,
+expiryDate,
+qty,
+chef: activeChef,
+loggedAt: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+};
+
+stockItems.unshift(newItem);
+saveAndRefresh();
+
+// Clear input name for next entry
+document.getElementById('inputItemName').value = '';
+
+if(autoPrint) {
+showThermalModal(newItem);
+}
+}
+
+function saveAndRefresh() {
+localStorage.setItem('freshlog_stock', JSON.stringify(stockItems));
+localStorage.setItem('freshlog_specials', JSON.stringify(specialsItems));
+renderStock();
+}
+
+function calculateStatus(expiryDateStr) {
+const today = new Date();
+today.setHours(0,0,0,0);
+const exp = new Date(expiryDateStr);
+exp.setHours(0,0,0,0);
+
+const diffTime = exp - today;
+const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+if(diffDays < 0) return { status: 'status-danger', badge: 'badge-danger', text: 'Expired' };
+if(diffDays === 0) return { status: 'status-danger', badge: 'badge-danger', text: 'Use Today' };
+if(diffDays === 1) return { status: 'status-warning', badge: 'badge-warning', text: 'Expires Tomorrow' };
+return { status: 'status-safe', badge: 'badge-safe', text: `${diffDays} Days Left` };
+}
+
+function renderStock() {
+const grid = document.getElementById('stockGrid');
+const filtered = activeFilter === 'All' ? stockItems : stockItems.filter(i => i.zone === activeFilter);
+
+if(filtered.length === 0) {
+grid.innerHTML = `
+<div class="empty-state">
+<h3>No prepped stock logged in ${activeFilter}</h3>
+<p>Use the intake bar below to log fresh items.</p>
+</div>
+`;
+return;
+}
+
+grid.innerHTML = filtered.map(item => {
+const calc = calculateStatus(item.expiryDate);
+return `
+<div class="stock-card ${calc.status}">
+<div class="stock-info">
+<h3>${item.name}</h3>
+<div class="stock-meta">
+<span>📍 ${item.zone}</span>
+<span>📦 ${item.qty}</span>
+<span>👨‍🍳 ${item.chef}</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+<span class="expiry-badge ${calc.badge}">${calc.text}</span>
+<div class="stock-actions">
+<button class="action-btn specials" onclick="pushToSpecials(${item.id})">→ Special</button>
+<button class="action-btn discard" onclick="removeItem(${item.id})">Bin</button>
+</div>
+</div>
+</div>
+`;
+}).join('');
+}
+
+function renderSpecials() {
+const grid = document.getElementById('specialsGrid');
+if(specialsItems.length === 0) {
+grid.innerHTML = `
+<div class="empty-state">
+<h3>No items pushed to Specials Board yet</h3>
+<p>Tap "→ Special" on any stock card to promote short-dated prep.</p>
+</div>
+`;
+return;
+}
+
+grid.innerHTML = specialsItems.map(item => `
+<div class="stock-card status-safe">
+<div class="stock-info">
+<h3>⭐ SPECIAL: ${item.name}</h3>
+<div class="stock-meta">
+<span>From Zone: ${item.zone}</span>
+<span>Qty: ${item.qty}</span>
+</div>
+</div>
+<button class="action-btn discard" onclick="removeSpecial(${item.id})">Clear</button>
+</div>
+`).join('');
+}
+
+function pushToSpecials(id) {
+const item = stockItems.find(i => i.id === id);
+if(item && !specialsItems.some(s => s.id === id)) {
+specialsItems.unshift(item);
+saveAndRefresh();
+alert(`Pushed "${item.name}" to the Specials Board!`);
+}
+}
+
+function removeItem(id) {
+stockItems = stockItems.filter(i => i.id !== id);
+saveAndRefresh();
+}
+
+function removeSpecial(id) {
+specialsItems = specialsItems.filter(i => i.id !== id);
+saveAndRefresh();
+}
+
+function showThermalModal(item) {
+const content = `
+<b>ITEM:</b> ${item.name}<br>
+<b>ZONE:</b> ${item.zone}<br>
+<b>QTY:</b> ${item.qty}<br>
+<b>USE BY:</b> ${item.expiryDate}<br>
+<b>CHEF:</b> ${item.chef} (${item.loggedAt})<br>
+<hr style="border: 1px dashed #000; margin: 6px 0;">
+<small>The King & Queen Kitchen Compliance</small>
+`;
+document.getElementById('modalLabelContent').innerHTML = content;
+document.getElementById('labelModal').style.display = 'flex';
+}
+
+function closeModal() {
+document.getElementById('labelModal').style.display = 'none';
+}
+
+function simPrint() {
+alert('Thermal label sent to kitchen printer successfully!');
+closeModal();
+}
+
+function triggerVoiceDemo() {
+document.getElementById('inputItemName').value = 'Slow Braised Lamb Shoulder';
+document.getElementById('inputZone').value = 'Walk-in';
+document.getElementById('inputQty').value = '2 Trays';
+const d = new Date();
+d.setDate(d.getDate() + 3);
+document.getElementById('inputExpiryDate').valueAsDate = d;
+alert('Voice parsed: "Slow Braised Lamb Shoulder to Walk-in for 3 days"');
+}
+
+// Initial render
+renderStock();
+</script>
+</body>
+</html>
 

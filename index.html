@@ -2,95 +2,117 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The King and Queen - Kitchen Compliance & Expiry</title>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>FreshLog | The King and Queen</title>
 <style>
-@media print {
-body * { visibility: hidden; }
-#print-modal-content, #print-modal-content * { visibility: visible; }
-#print-modal-content { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: white; }
+:root {
+--bg-dark: #0b1329;
+--card-bg: #131d3d;
+--card-border: #1e2d5c;
+--primary: #10b981;
+--primary-hover: #059669;
+--text-main: #f8fafc;
+--text-muted: #94a3b8;
+--danger: #ef4444;
+--warning: #f59e0b;
+--safe: #10b981;
 }
-</style>
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased font-sans">
-<div id="app" class="max-w-md mx-auto min-h-screen bg-white shadow-2xl flex flex-col relative pb-28">
-<!-- Header -->
-<header class="bg-slate-900 text-white p-4 sticky top-0 z-30 shadow-md">
-<div class="flex justify-between items-center mb-3">
-<div class="flex items-center gap-2">
-<div class="bg-emerald-500 text-slate-900 font-black px-2 py-1 rounded text-sm">KQ</div>
-<div>
-<h1 class="font-bold text-base leading-tight">The King and Queen</h1>
-<p class="text-xs text-slate-400">EHO Compliance, Temps & Expiry</p>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<div class="text-right">
-<span class="text-xs text-slate-400 block">Active Chef</span>
-<select id="staff-select" class="bg-slate-800 text-xs text-emerald-300 font-medium px-2 py-1 rounded border border-slate-700 outline-none">
-<option>Jamie</option>
-<option>David</option>
-<option>Toby</option>
-</select>
-</div>
-</div>
-</div>
 
-<!-- Quick Toggles -->
-<div class="flex items-center justify-between bg-slate-800/80 px-3 py-1.5 rounded-lg text-xs border border-slate-700/50">
-<div class="flex items-center gap-2">
-<span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-<span class="text-slate-300">Auto-Print Thermal Labels</span>
-</div>
-<button id="auto-print-toggle" class="bg-emerald-600 text-white px-2.5 py-0.5 rounded font-medium transition">ON</button>
-</div>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+-webkit-tap-highlight-color: transparent;
+}
 
-<!-- 4-Tab Navigation -->
-<div class="grid grid-cols-4 gap-1 mt-3 bg-slate-800 p-1 rounded-xl">
-<button onclick="switchTab('board')" id="tab-btn-board" class="py-2 text-[11px] font-semibold rounded-lg bg-emerald-500 text-slate-900 transition flex items-center justify-center gap-1 shadow-sm">
-<i data-lucide="layers" class="w-3.5 h-3.5"></i> Board
-</button>
-<button onclick="switchTab('temps')" id="tab-btn-temps" class="py-2 text-[11px] font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
-<i data-lucide="thermometer" class="w-3.5 h-3.5 text-sky-400"></i> Temps
-</button>
-<button onclick="switchTab('checklists')" id="tab-btn-checklists" class="py-2 text-[11px] font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
-<i data-lucide="check-square" class="w-3.5 h-3.5 text-emerald-400"></i> Checks
-</button>
-<button onclick="switchTab('specials')" id="tab-btn-specials" class="py-2 text-[11px] font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
-<i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Specials
-</button>
-</div>
-</header>
+body {
+background-color: var(--bg-dark);
+color: var(--text-main);
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+padding-bottom: 220px; /* space for fixed bottom intake bar */
+}
 
-<!-- Main Content Area -->
-<main class="flex-1 p-4 space-y-4">
+header {
+background: var(--card-bg);
+border-bottom: 1px solid var(--card-border);
+padding: 12px 16px;
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
 
-<!-- TAB 1: LIVE EXPIRY BOARD -->
-<div id="tab-board" class="space-y-4">
-<div class="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-blue-500/10 border border-emerald-500/30 rounded-2xl p-3.5">
-<div class="flex justify-between items-center mb-1.5">
-<div>
-<span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-600 text-white px-2 py-0.5 rounded-full">Quick Intake</span>
-<h3 class="font-bold text-slate-900 mt-1 text-sm">Log Prepped Stock</h3>
-</div>
-<button onclick="runDemoVoice()" class="bg-slate-900 text-emerald-400 text-xs font-semibold px-3 py-1.5 rounded-xl hover:bg-slate-800 transition flex items-center gap-1 shadow-sm">
-<i data-lucide="mic" class="w-3.5 h-3.5"></i> Demo Voice
-</button>
-</div>
-<p id="voice-simulation-status" class="text-xs text-slate-600 italic">"Set your use-by date in the bar below, then log stock."</p>
-</div>
+.header-top {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
 
-<!-- Filter bar -->
-<div class="flex gap-2 overflow-x-auto pb-1 text-xs">
-<button onclick="filterZone('All')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-900 text-white font-medium whitespace-nowrap">All Zones</button>
-<button onclick="filterZone('Fridge 1')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Fridge 1</button>
-<button onclick="filterZone('Prep Fridge')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Prep Fridge</button>
-<button onclick="filterZone('Walk-in')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Walk-in</button>
-<button onclick="filterZone('Dry Store')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Dry Store</button>
-</div>
+.brand-area {
+display: flex;
+align-items: center;
+gap: 10px;
+}
 
-<!-- Inventory List -->
-<div id="inventory-list"
+.logo-box {
+background: var(--primary);
+color: #fff;
+font-weight: 800;
+font-size: 14px;
+padding: 6px 10px;
+border-radius: 6px;
+letter-spacing: 0.5px;
+}
+
+.app-title h1 {
+font-size: 16px;
+font-weight: 700;
+}
+
+.app-title p {
+font-size: 11px;
+color: var(--text-muted);
+}
+
+.chef-selector {
+display: flex;
+align-items: center;
+gap: 6px;
+font-size: 12px;
+background: rgba(255,255,255,0.05);
+padding: 4px 8px;
+border-radius: 6px;
+border: 1px solid var(--card-border);
+color: var(--text-main);
+}
+
+.chef-selector select {
+background: transparent;
+color: var(--text-main);
+border: none;
+font-weight: 600;
+outline: none;
+font-size: 12px;
+}
+
+.settings-bar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: rgba(0,0,0,0.2);
+padding: 6px 10px;
+border-radius: 6px;
+font-size: 12px;
+}
+
+.toggle-switch {
+display: flex;
+align-items: center;
+gap: 8px;
+cursor: pointer;
+}
+
+
 

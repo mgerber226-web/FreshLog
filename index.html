@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The King and Queen - Kitchen Expiry & Specials</title>
+<title>Log Fresh - Kitchen Compliance & Expiry</title>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
@@ -20,15 +20,15 @@ body * { visibility: hidden; }
 <header class="bg-slate-900 text-white p-4 sticky top-0 z-30 shadow-md">
 <div class="flex justify-between items-center mb-3">
 <div class="flex items-center gap-2">
-<div class="bg-emerald-500 text-slate-900 font-black px-2 py-1 rounded text-sm">KQ</div>
+<div class="bg-emerald-500 text-slate-900 font-black px-2 py-1 rounded text-sm">LF</div>
 <div>
-<h1 class="font-bold text-base leading-tight">The King and Queen</h1>
-<p class="text-xs text-slate-400">Kitchen Use-By & Waste Management</p>
+<h1 class="font-bold text-base leading-tight">Log Fresh</h1>
+<p class="text-xs text-slate-400">EHO Compliance, Temps & Expiry</p>
 </div>
 </div>
 <div class="flex items-center gap-2">
 <div class="text-right">
-<span class="text-xs text-slate-400 block">Active Staff</span>
+<span class="text-xs text-slate-400 block">Active Chef</span>
 <select id="staff-select" class="bg-slate-800 text-xs text-emerald-300 font-medium px-2 py-1 rounded border border-slate-700 outline-none">
 <option>Jamie</option>
 <option>David</option>
@@ -39,232 +39,19 @@ body * { visibility: hidden; }
 </div>
 
 <!-- Quick Toggles -->
-<div class="flex items-center justify-between bg-slate-800/80 px-3 py-2 rounded-lg text-xs border border-slate-700/50">
+<div class="flex items-center justify-between bg-slate-800/80 px-3 py-1.5 rounded-lg text-xs border border-slate-700/50">
 <div class="flex items-center gap-2">
 <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
 <span class="text-slate-300">Auto-Print Thermal Labels</span>
 </div>
-<button id="auto-print-toggle" class="bg-emerald-600 text-white px-2.5 py-1 rounded font-medium transition">ON</button>
+<button id="auto-print-toggle" class="bg-emerald-600 text-white px-2.5 py-0.5 rounded font-medium transition">ON</button>
 </div>
 
-<!-- Navigation Tabs -->
-<div class="grid grid-cols-3 gap-1 mt-3 bg-slate-800 p-1 rounded-xl">
-<button onclick="switchTab('board')" id="tab-btn-board" class="py-2 text-xs font-semibold rounded-lg bg-emerald-500 text-slate-900 transition flex items-center justify-center gap-1.5 shadow-sm">
-<i data-lucide="layers" class="w-3.5 h-3.5"></i> Live Board
+<!-- 4-Tab Navigation -->
+<div class="grid grid-cols-4 gap-1 mt-3 bg-slate-800 p-1 rounded-xl">
+<button onclick="switchTab('board')" id="tab-btn-board" class="py-2 text-[11px] font-semibold rounded-lg bg-emerald-500 text-slate-900 transition flex items-center justify-center gap-1 shadow-sm">
+<i data-lucide="layers" class="w-3.5 h-3.5"></i> Board
 </button>
-<button onclick="switchTab('specials')" id="tab-btn-specials" class="py-2 text-xs font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5">
-<i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Rescue Specials
-</button>
-<button onclick="switchTab('eho')" id="tab-btn-eho" class="py-2 text-xs font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5">
-<i data-lucide="clipboard-check" class="w-3.5 h-3.5"></i> EHO Log
-</button>
-</div>
-</header>
-
-<!-- Main Content Area -->
-<main class="flex-1 p-4 space-y-4">
-<!-- TAB 1: LIVE BOARD -->
-<div id="tab-board" class="space-y-4">
-<div class="bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-blue-500/10 border border-emerald-500/30 rounded-2xl p-4">
-<div class="flex justify-between items-start mb-2">
-<div>
-<span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-600 text-white px-2 py-0.5 rounded-full">AI Voice Intake</span>
-<h3 class="font-bold text-slate-900 mt-1 text-sm">Quick Intake Simulation</h3>
-</div>
-<button onclick="runDemoVoice()" class="bg-slate-900 text-emerald-400 text-xs font-semibold px-3 py-1.5 rounded-xl hover:bg-slate-800 transition flex items-center gap-1 shadow-sm">
-<i data-lucide="mic" class="w-3.5 h-3.5"></i> Demo Voice Note
-</button>
-</div>
-<p id="voice-simulation-status" class="text-xs text-slate-600 italic">"Select your custom expiry date below, then log your prep item."</p>
-</div>
-
-<!-- Filter bar -->
-<div class="flex gap-2 overflow-x-auto pb-1 text-xs">
-<button onclick="filterZone('All')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-900 text-white font-medium whitespace-nowrap">All Zones</button>
-<button onclick="filterZone('Fridge 1')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Fridge 1</button>
-<button onclick="filterZone('Prep Fridge')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Prep Fridge</button>
-<button onclick="filterZone('Walk-in')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Walk-in</button>
-<button onclick="filterZone('Dry Store')" class="zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200">Dry Store</button>
-</div>
-
-<!-- Inventory List -->
-<div id="inventory-list" class="space-y-3"></div>
-</div>
-
-<!-- TAB 2: RESCUE SPECIALS -->
-<div id="tab-specials" class="space-y-4 hidden">
-<div class="bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-2xl p-4">
-<div class="flex justify-between items-center mb-2">
-<div>
-<span class="text-[10px] font-bold uppercase tracking-wider bg-amber-600 text-white px-2 py-0.5 rounded-full">AI Revenue Engine</span>
-<h3 class="font-bold text-slate-900 mt-1 text-sm">Rescue Expiring Stock</h3>
-</div>
-<button onclick="generateSpecials()" class="bg-amber-600 text-white text-xs font-bold px-3.5 py-2 rounded-xl hover:bg-amber-700 transition flex items-center gap-1.5 shadow-sm">
-<i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Generate Specials
-</button>
-</div>
-<p class="text-xs text-slate-600">Instantly pairs Red & Amber expiring stock with pantry items to create profitable daily menu specials.</p>
-</div>
-
-<div id="specials-list" class="space-y-4"></div>
-</div>
-
-<!-- TAB 3: EHO LOG -->
-<div id="tab-eho" class="space-y-4 hidden">
-<div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-<div class="flex justify-between items-center mb-3">
-<div>
-<h3 class="font-bold text-slate-900 text-sm">Compliance & Waste Audit</h3>
-<p class="text-xs text-slate-500">UK EHO Food Safety Records</p>
-</div>
-<button onclick="exportCSV()" class="bg-slate-900 text-white text-xs font-medium px-3 py-1.5 rounded-xl flex items-center gap-1.5">
-<i data-lucide="download" class="w-3.5 h-3.5"></i> Export CSV
-</button>
-</div>
-<div class="grid grid-cols-2 gap-3 mb-4">
-<div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl">
-<span class="text-xs text-emerald-700 font-medium block">Stock Rescued</span>
-<span id="stat-rescued-count" class="text-xl font-black text-emerald-900">0 items</span>
-</div>
-<div class="bg-blue-50 border border-blue-200 p-3 rounded-xl">
-<span class="text-xs text-blue-700 font-medium block">Est. Money Saved</span>
-<span id="stat-money-saved" class="text-xl font-black text-blue-900">£0</span>
-</div>
-</div>
-<div id="eho-log-list" class="space-y-2 text-xs"></div>
-</div>
-</div>
-</main>
-
-<!-- Bottom Input & Custom Date Bar -->
-<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur border-t border-slate-200 p-3 shadow-lg z-20 space-y-2">
-<div class="flex items-center justify-between text-xs text-slate-600 px-1">
-<span class="font-semibold text-slate-700">Set Expiry Date for Next Log:</span>
-<input type="date" id="custom-expiry-date" class="bg-slate-100 border border-slate-200 text-slate-800 font-medium px-2 py-1 rounded-lg outline-none focus:border-emerald-500">
-</div>
-<form onsubmit="handleTextSubmit(event)" class="flex gap-2">
-<div class="relative flex-1">
-<input type="text" id="manual-input" placeholder="e.g., 4 packs chicken breasts, Fridge 1" class="w-full bg-slate-100 border border-slate-200 rounded-xl pl-9 pr-3 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-emerald-500 font-medium">
-<i data-lucide="mic" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
-</div>
-<button type="submit" class="bg-slate-900 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition shadow-sm flex items-center gap-1">
-<i data-lucide="plus" class="w-3.5 h-3.5"></i> Log
-</button>
-</form>
-</div>
-
-<!-- Thermal Label Print Modal -->
-<div id="print-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-<div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl space-y-4">
-<div class="flex justify-between items-center border-b border-slate-100 pb-3">
-<div class="flex items-center gap-2">
-<i data-lucide="printer" class="w-5 h-5 text-emerald-600"></i>
-<h3 class="font-bold text-slate-900 text-sm">Thermal Label Preview</h3>
-</div>
-<button onclick="closePrintModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
-</div>
-
-<div class="flex bg-slate-100 p-1 rounded-lg text-xs">
-<button onclick="setLabelSize('50x30')" id="size-btn-50x30" class="flex-1 py-1.5 font-bold rounded bg-white shadow-sm">50 x 30 mm</button>
-<button onclick="setLabelSize('50x50')" id="size-btn-50x50" class="flex-1 py-1.5 font-medium text-slate-600">50 x 50 mm</button>
-</div>
-
-<div class="flex justify-center py-2">
-<div id="print-modal-content" class="bg-white border-2 border-dashed border-slate-800 p-3 rounded-lg text-slate-900 w-64 shadow-inner space-y-2 font-mono">
-<div class="flex justify-between items-start border-b border-slate-800 pb-1 text-[10px]">
-<span class="font-bold">THE KING AND QUEEN</span>
-<span id="label-zone" class="font-bold bg-slate-900 text-white px-1 rounded">FRIDGE 1</span>
-</div>
-<div>
-<div id="label-item-name" class="font-black text-sm uppercase leading-tight">ITEM NAME</div>
-<div id="label-qty" class="text-xs font-bold text-slate-700">QTY: 1 UNIT</div>
-</div>
-<div class="bg-slate-900 text-white p-1.5 text-center rounded">
-<span class="text-[9px] uppercase tracking-widest block text-slate-400">USE BY DATE</span>
-<span id="label-expiry" class="text-base font-black tracking-wide">FRI 15 NOV</span>
-</div>
-<div class="flex justify-between items-end pt-1 text-[9px] text-slate-600 border-t border-dashed border-slate-300">
-<div>
-<span id="label-prepped">Prepped: Today</span><br>
-<span id="label-staff-tag">Staff: Jamie</span>
-</div>
-<div class="bg-slate-200 p-1 rounded font-bold text-[8px] text-center">
-[QR] SCAN TO<br>MARK USED
-</div>
-</div>
-</div>
-</div>
-
-<div class="grid grid-cols-2 gap-2 pt-2">
-<button onclick="simulateBluetoothPrint()" class="bg-slate-100 text-slate-800 hover:bg-slate-200 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-center gap-1">
-<i data-lucide="bluetooth" class="w-3.5 h-3.5 text-blue-600"></i> BT Print
-</button>
-<button onclick="window.print()" class="bg-emerald-600 text-white hover:bg-emerald-700 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1 shadow-sm">
-<i data-lucide="printer" class="w-3.5 h-3.5"></i> Print Sticker
-</button>
-</div>
-</div>
-</div>
-</div>
-
-<script>
-let currentTab = 'board';
-let currentZoneFilter = 'All';
-let autoPrintOnLog = true;
-let labelSize = '50x30';
-let activeLabelData = null;
-
-let inventory = [];
-let ehoLog = [];
-
-const demoVoiceNotes = [
-{ name: 'Rump Steak Portions', qty: '6 cuts', zone: 'Fridge 1', daysAhead: 2 },
-{ name: 'Fresh Sea Bass Fillets', qty: '10 portions', zone: 'Prep Fridge', daysAhead: 1 },
-{ name: 'Caesar Salad Dressing', qty: '2 L', zone: 'Walk-in', daysAhead: 3 },
-{ name: 'Garlic & Herb Butter', qty: '4 blocks', zone: 'Dry Store', daysAhead: 7 }
-];
-
-function init() {
-// Set default date picker value to tomorrow
-const tomorrow = new Date();
-tomorrow.setDate(tomorrow.getDate() + 2);
-document.getElementById('custom-expiry-date').value = tomorrow.toISOString().split('T')[0];
-
-renderInventory();
-renderEhoLog();
-lucide.createIcons();
-
-document.getElementById('auto-print-toggle').addEventListener('click', function() {
-autoPrintOnLog = !autoPrintOnLog;
-this.textContent = autoPrintOnLog ? 'ON' : 'OFF';
-this.className = autoPrintOnLog ? 'bg-emerald-600 text-white px-2.5 py-1 rounded font-medium transition' : 'bg-slate-700 text-slate-300 px-2.5 py-1 rounded font-medium transition';
-});
-}
-
-function switchTab(tab) {
-currentTab = tab;
-['board', 'specials', 'eho'].forEach(t => {
-document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab);
-const btn = document.getElementById(`tab-btn-${t}`);
-if(t === tab) {
-btn.className = 'py-2 text-xs font-semibold rounded-lg bg-emerald-500 text-slate-900 transition flex items-center justify-center gap-1.5 shadow-sm';
-} else {
-btn.className = 'py-2 text-xs font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5';
-}
-});
-if(tab === 'specials') generateSpecials();
-lucide.createIcons();
-}
-
-function filterZone(zone) {
-currentZoneFilter = zone;
-document.querySelectorAll('.zone-filter-btn').forEach(btn => {
-if(btn.textContent.includes(zone) || (zone === 'All' && btn.textContent === 'All Zones')) {
-btn.className = 'zone-filter-btn px-3 py-1.5 rounded-full bg-slate-900 text-white font-medium whitespace-nowrap';
-} else {
-btn.className = 'zone-filter-btn px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 font-medium whitespace-nowrap hover:bg-slate-200';
-}
-});
-renderInventory();
-}
+<button onclick="switchTab('temps')" id="tab-btn-temps" class="py-2 text-[11px] font-semibold rounded-lg text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
+<i data-lucide="thermometer" class
 
